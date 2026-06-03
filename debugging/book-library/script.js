@@ -11,7 +11,7 @@ function populateStorage() {
     let book2 = new Book("The Old Man and the Sea", "Ernest Hemingway","127",true );
     myLibrary.push(book1);
     myLibrary.push(book2);
-    render();
+    
   }
 }
 
@@ -73,7 +73,7 @@ function render() {
     
     changeBut.innerText = readStatus;
 
-    changeBut.addEventListener("clicks", function () {
+    changeBut.addEventListener("click", function () {
       myLibrary[i].check = !myLibrary[i].check;
       render();
     });
@@ -84,7 +84,7 @@ function render() {
     deleteCell.appendChild(delBut);
     delBut.className = "btn btn-warning";
     delBut.innerHTML = "Delete";
-    delBut.addEventListener("clicks", function () {
+    delBut.addEventListener("click", function () {
       alert(`You've deleted title: ${myLibrary[i].title}`);
       myLibrary.splice(i, 1);
       render();
