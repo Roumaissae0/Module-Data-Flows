@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dog Photo Gallery</title>
+  </head>
+  <body>
+    <header>
+      <h1>Dog Photo Gallery</h1>
+    </header>
+    <main>
+      <button id="add-dog">Add a dog</button>
+      <button id="clear-dogs">Clear all</button>
+      <ul id="dog-list"></ul>
+    </main>
+
+    <script>
+      async function fetchDogImage() {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random");
+        if (!response.ok) {
+          throw new Error("Failed to fetch dog image");
+        }
+        return response.json();
+      }
+
+      function addDogToList(imageUrl) {
+        const list = document.getElementById("dog-list");
+        const li = document.createElement("li");
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "A random dog";
+        img.width = 200;
+        li.appendChild(img);
+        list.appendChild(li);
+      }
+
+      function showError() {
+        const existing = document.getElementById("error-msg");
+        if (existing) return;
+        const error = document.createElement("p");
+        error.id = "error-msg";
+        error.textContent = "Something went wrong. Please try again.";
+        error.style.color = "red";
+        document.querySelector("main").appendChild(error);
+      }
+
+      function clearError() {
+        const existing = document.getElementById("error-msg");
+        if (existing) existing.remove();
+      }
+
+      document.getElementById("add-dog").addEventListener("click", async () => {
+        clearError();
+        try {
+          const data = await fetchDogImage();
+          addDogToList(data.message);
+        } catch (error) {
+          showError();
+        }
+      });
+
+      document.getElementById("clear-dogs").addEventListener("click", () => {
+        document.getElementById("dog-list").innerHTML = "";
+        clearError();
+      });
+    </script>
+  </body>
+</html>
