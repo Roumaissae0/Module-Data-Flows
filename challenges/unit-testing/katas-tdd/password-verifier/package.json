@@ -1,0 +1,16 @@
+{
+  "name": "password-verifier",
+  "version": "1.0.0",
+  "description": "Using TDD, write a function that checks a password follows the below series of rules.",
+  "main": "password.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}
