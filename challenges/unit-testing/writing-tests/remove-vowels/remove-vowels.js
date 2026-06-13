@@ -1,16 +1,9 @@
 function removeVowels(word) {
   let characters = word.split("");
-
   let result = [];
 
   characters.forEach(function (character) {
-    if (
-      character !== "a" &&
-      character !== "o" &&
-      character !== "i" &&
-      character !== "e" &&
-      character !== "u"
-    ) {
+    if (!"aeiouAEIOU".includes(character)) {
       result.push(character);
     }
   });
